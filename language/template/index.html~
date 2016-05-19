@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title>LINGVITO SE</title>
+    </br>
+    <h2 align="left">REGISTER NO: 1031310312 <h2 align="right">REGISTER NO: 1031310312</h2></h2>
+    <h2 align="left">REGISTER NO: 1031310345</h2>
+    <h2 align="right">REGISTER NO: 1031310312</h2>
+    <h2 align="right">REGISTER NO: 1031310345</h2>
+    <link type="text/css" href="/assets/menu.css" rel="stylesheet" />
+    <script type="text/javascript" src="/assets/jquery.js"></script>
+    <script type="text/javascript" src="/assets/menu.js"></script>
+    <script>
+    	$(document).ready(function(){
+    	function search(query){
+	$.ajax({
+		type:"GET",
+		url:"/"+encodeURIComponent(query),
+		success:function(data){
+			$("#table_ans").html("");
+			var js = data;
+			
+			var arr = js["cheat"]["hits"]["hits"][0]["_source"]["sections"];
+			console.log(arr);
+			var main = $();
+			main = main.add("<tr><th>English</th><th>Script</th><th>Translation</th></tr>")
+			$.each(arr,function(k,v){
+				var section = arr[k];
+				$.each(section,function(k1,v1){
+					
+				
+					main = main.add("<tr><td>"+v1['key']+"</td><td>"+v1['val']+"</td><td>"+v1['trn']+"</td></tr>");
+				});
+			
+			
+			});
+			console.log(main);
+			$("#table_ans").append(main);
+
+			
+
+		},
+		error:function(e){
+			
+		}
+	});
+};
+
+    		$("#search_form").on("submit",function(){
+    			var query = $("#search_input").val();
+    			search(query);
+    			return false;
+    		});
+    	
+    	
+    	});
+    </script>
+    <style>
+    body,html{
+    	width:100%;
+    	height:100%;
+    }
+    </style>
+    </head>
+<body>
+    <form id="search_form" class="form-wrapper cf">
+    <h1 align="center">"LINGVITO"</h1>
+    <p>Lingvito is a software system that is designed to search for basic information for diffrent languages.</p>
+  	<input id="search_input" type="text" placeholder="Search only language name Ex:-hindi" required>
+	  <button type="submit">Search</button>
+</form>
+<table style="width:50%;height:100%;background-color:white;margin-left:25%;margin-right:25%;color:black;">
+<tbody id ="table_ans">
+</tbody>
+</table>
+
+
+<div class="footer-section">
+			<div class="container">
+				<div class="footer-top">
+					<p>
+						&copy; 2016 AJAY BHADU & CHANDRESH SONI | All rights reserved
+					</p>
+				</div>
+				<script type="text/javascript">
+						$(document).ready(function(){/*var defaults={containerID: 'toTop', // fading element idcontainerHoverID: 'toTopHover', // fading element hover idscrollSpeed: 1200,easingType: 'linear'};*/$().UItoTop({easingType: 'easeOutQuart'});});
+				</script> <a href="#" id="toTop" style="display: block;"><span id=
+				"toTopHover" style="opacity: 1;"></span></a>
+			</div>
+		</div>
+</body>
+</html>
